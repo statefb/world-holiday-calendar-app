@@ -53,7 +53,6 @@ export default function CardRegion(props: CardRegionProps) {
           </Stack>
         </CardContent>
       </Card>
-      ;
     </>
   );
 }
