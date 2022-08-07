@@ -1,7 +1,7 @@
-import { Card, CardContent, Chip, Stack } from "@mui/material";
+import { Button, Card, CardContent, Chip, Stack } from "@mui/material";
 import { useState } from "react";
 import { RegionSetting } from "../lib/types/region";
-import ButtonOK from "./ButtonOK";
+import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import DialogRegion from "./DialogRegion";
 
 function getLabelFromRegion(region: RegionSetting) {
@@ -25,7 +25,14 @@ export default function CardRegion(props: CardRegionProps) {
       <Card sx={{ m: 1 }} elevation={5}>
         <CardContent>
           <Stack direction="row" spacing={1}>
-            <ButtonOK onClick={() => setOpen(true)} text="追加"></ButtonOK>
+            <Button
+              variant="contained"
+              color="info"
+              onClick={() => setOpen(true)}
+            >
+              <FlagCircleIcon />
+              追加
+            </Button>
             <DialogRegion
               open={open}
               selectedRegions={selectedRegions}
