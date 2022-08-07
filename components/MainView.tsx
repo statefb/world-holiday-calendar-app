@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { RegionSetting } from "../lib/types/region";
-import ButtonOK from "./ButtonOK";
-import Calendar from "./Calendar";
 import CardRegion from "./CardRegion";
-import DialogRegion from "./DialogRegion";
+
+/**
+ * suppress warning when use fullcalendar on next.js.
+ * following code ensures Calendar component will be imported on client-side.
+ * detail:
+ * https://www.learnfk.com/en/question/typescript/72140065.html
+ */
+import dynamic from "next/dynamic";
+const Calendar = dynamic(() => import("./Calendar"), { ssr: false });
 
 const MainView = () => {
   const [regions, setRegions] = useState<RegionSetting[]>([]);

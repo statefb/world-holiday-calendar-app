@@ -17,8 +17,6 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ButtonCancel from "./ButtonCancel";
 import ButtonOK from "./ButtonOK";
 import Holidays from "date-holidays";
-import { Dictionary } from "@fullcalendar/react";
-import { RegionSetting } from "../lib/types/region";
 
 export interface DialogRegionProps {
   open: boolean;
