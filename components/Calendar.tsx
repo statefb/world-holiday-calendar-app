@@ -12,6 +12,7 @@ import { RegionSetting } from "../lib/types/region";
 import { useEffect, useState } from "react";
 import { CalendarEvent } from "../lib/types/event";
 import getColor from "../lib/utils/palette";
+import DialogDetail from "./DialogDetail";
 
 interface CalendarProps {
   regions: RegionSetting[];
@@ -21,6 +22,10 @@ export default function Calendar(props: CalendarProps) {
   const { regions } = props;
   const [year, setYear] = useState(new Date().getFullYear());
   const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [openDetail, setOpenDetail] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
+    null
+  );
 
   useEffect(() => {
     let tmp: any[] = [];
@@ -83,7 +88,18 @@ export default function Calendar(props: CalendarProps) {
         }}
         //
         datesSet={handleDatesSet}
+        eventClick={(arg) => {
+          setSelectedEvent(arg.event as unknown as CalendarEvent);
+          setOpenDetail(true);
+        }}
       />
+      <DialogDetail
+        open={openDetail}
+        event={selectedEvent}
+        onClose={() => {
+          setOpenDetail(false);
+        }}
+      ></DialogDetail>
     </>
   );
 }

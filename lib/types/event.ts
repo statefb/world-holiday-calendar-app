@@ -5,4 +5,11 @@ export type CalendarEvent = {
   backgroundColor: string;
   borderColor: string;
   textColor: string;
+  extendedProps: {
+    countryName: string;
+    regionName: string;
+    stateName: string;
+    type: string;
+    rule: string;
+  };
 };
