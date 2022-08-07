@@ -46,7 +46,7 @@ export default function Calendar(props: CalendarProps) {
       ];
     }
     setEvents(toEvent(tmp));
-  }, [regions]);
+  }, [regions, year]);
 
   const handleDatesSet = (arg: DatesSetArg) => {
     setYear(arg.start.getFullYear());
