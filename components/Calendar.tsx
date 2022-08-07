@@ -65,16 +65,21 @@ export default function Calendar(props: CalendarProps) {
         }}
         events={events}
         // 初期表示ビュー
-        initialView="timeGridWeek"
-        // 週・日表示の開始と終了時刻の指定
-        slotMinTime="06:00:00"
-        slotMaxTime="22:00:00"
+        initialView="dayGridMonth"
+        // // 週・日表示の開始と終了時刻の指定
+        // slotMinTime="06:00:00"
+        // slotMaxTime="22:00:00"
         // 日付をクリックしたら詳細に飛べるようにする
         navLinks
-        // 営業時間を強調表示する。デフォルトは9am-5am
-        // カスタマイズは以下参照
+        // 営業時間を強調表示する
         // https://fullcalendar.io/docs/businessHours
-        businessHours
+        businessHours={{
+          // days of week. an array of zero-based day of week integers (0=Sunday)
+          daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
+
+          startTime: "9:00", // a start time (10am in this example)
+          endTime: "18:00", // an end time (6pm in this example)
+        }}
         //
         datesSet={handleDatesSet}
       />
