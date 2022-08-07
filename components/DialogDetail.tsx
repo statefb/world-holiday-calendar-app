@@ -29,7 +29,7 @@ export default function DialogDetail(props: DialogDetailProps) {
   return (
     <>
       <Dialog open={open}>
-        <DialogTitle>イベント詳細</DialogTitle>
+        <DialogTitle>祝日詳細</DialogTitle>
 
         <DialogContent>
           <Box>
