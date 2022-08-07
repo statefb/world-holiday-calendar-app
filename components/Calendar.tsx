@@ -11,18 +11,10 @@ import { toEvent } from "../lib/utils/convert";
 import { RegionSetting } from "../lib/types/region";
 import { useEffect, useState } from "react";
 import { CalendarEvent } from "../lib/types/event";
+import getColor from "../lib/utils/palette";
 
 interface CalendarProps {
   regions: RegionSetting[];
-}
-
-export interface Holiday extends HolidaysTypes.Holiday {
-  country: string;
-  countryName: string;
-  state: string;
-  stateName: string;
-  region: string;
-  regionName: string;
 }
 
 export default function Calendar(props: CalendarProps) {
@@ -33,18 +25,27 @@ export default function Calendar(props: CalendarProps) {
   useEffect(() => {
     let tmp: any[] = [];
 
-    for (const region of regions) {
+    regions.forEach((region, index) => {
+      const backgroundColor = getColor(index);
+
       const hd = new Holidays(region.country, region.state, region.region);
       tmp = [
         ...tmp,
         ...hd.getHolidays(year).map((h) => {
           return {
+            // holiday attributes from date-holidays
             ...h,
+            // region attributes
             ...region,
+            // color scheme
+            backgroundColor: backgroundColor,
+            borderColor: backgroundColor,
+            textColor: "#eeeeee",
           };
         }),
       ];
-    }
+    });
+
     setEvents(toEvent(tmp));
   }, [regions, year]);
 
